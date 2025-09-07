@@ -68,7 +68,7 @@ To generate code you can use the generator command in the `cmd/generate` package
 To create a new database migration, run:
 
 ```bash
-go run cmd/generate/main.go migration <migration-name> <migration-type>
+./bin/generate migration <migration-name> <migration-type>
 ```
 
 The `<migration-type>` can be either `sql` or `go`, the default is `sql`.
@@ -78,20 +78,20 @@ The `<migration-type>` can be either `sql` or `go`, the default is `sql`.
 To generate a new application component, run:
 
 ```bash
-go run cmd/generate/main.go app <component-name>
+./bin/generate app <component-name>
 ```
 
-E.g., `go run cmd/generate/main.go app api/v1/user`.
+E.g., `./bin/generate app api/v1/user`.
 
 #### Repository
 
 To generate a new repository, run:
 
 ```bash
-go run cmd/generate/main.go repository <repository-name>
+./bin/generate repository <repository-name>
 ```
 
-E.g., `go run cmd/generate/main.go repository user`.
+E.g., `./bin/generate repository user`.
 
 ### Database
 
@@ -102,7 +102,7 @@ You can manage your database using the provided CLI commands.
 To create the database, run:
 
 ```bash
-go run cmd/db/main.go create
+./bin/db create
 ```
 
 #### Drop database
@@ -110,7 +110,7 @@ go run cmd/db/main.go create
 To drop the database, run:
 
 ```bash
-go run cmd/db/main.go drop
+./bin/db drop
 ```
 
 #### Migrate database
@@ -118,7 +118,7 @@ go run cmd/db/main.go drop
 To migrate the database, run:
 
 ```bash
-go run cmd/db/main.go migrate
+./bin/db migrate
 ```
 
 #### Rollback database
@@ -126,7 +126,7 @@ go run cmd/db/main.go migrate
 To rollback the last applied migration, run:
 
 ```bash
-go run cmd/db/main.go rollback
+./bin/db rollback
 ```
 
 #### Seed database
@@ -134,7 +134,7 @@ go run cmd/db/main.go rollback
 To seed the database with initial data, run:
 
 ```bash
-go run cmd/db/main.go seed
+./bin/db seed
 ```
 
 #### Setup database
@@ -142,7 +142,7 @@ go run cmd/db/main.go seed
 To set up the database (create, migrate, and seed), run:
 
 ```bash
-go run cmd/db/main.go setup
+./bin/db setup
 ```
 
 #### Reset database
@@ -150,7 +150,7 @@ go run cmd/db/main.go setup
 To reset the database (drop, create, migrate, and seed), run:
 
 ```bash
-go run cmd/db/main.go reset
+./bin/db reset
 ```
 
 ### Server
@@ -158,7 +158,7 @@ go run cmd/db/main.go reset
 To start the HTTP server, run:
 
 ```bash
-go run cmd/server/main.go start
+./bin/server start
 ```
 
 ### Transaction
