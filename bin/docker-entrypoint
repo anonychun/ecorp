@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+./bin/db create
+./bin/db migrate
+./bin/db seed
+
+exec "${@}"
