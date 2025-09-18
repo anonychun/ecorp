@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"log"
 	"os"
 
@@ -16,22 +17,56 @@ func main() {
 		{
 			Name:  "migration",
 			Usage: "Generate a new database migration",
-			Action: func(ctx context.Context, c *cli.Command) error {
-				return internal.GenerateMigration(c.Args().Get(0), c.Args().Get(1))
+			Arguments: []cli.Argument{
+				&cli.StringArg{
+					Name: "name",
+				},
+				&cli.StringArg{
+					Name:  "type",
+					Value: "sql",
+				},
+			},
+			Action: func(_ context.Context, c *cli.Command) error {
+				name := c.StringArg("name")
+				if name == "" {
+					return errors.New("missing migration name")
+				}
+
+				return internal.GenerateMigration(name, c.StringArg("type"))
 			},
 		},
 		{
 			Name:  "app",
 			Usage: "Generate a new app",
-			Action: func(ctx context.Context, c *cli.Command) error {
-				return nil
+			Arguments: []cli.Argument{
+				&cli.StringArg{
+					Name: "name",
+				},
+			},
+			Action: func(_ context.Context, c *cli.Command) error {
+				name := c.StringArg("name")
+				if name == "" {
+					return errors.New("missing app name")
+				}
+
+				return internal.GenerateApp(name)
 			},
 		},
 		{
 			Name:  "repository",
 			Usage: "Generate a new repository",
-			Action: func(ctx context.Context, c *cli.Command) error {
-				return nil
+			Arguments: []cli.Argument{
+				&cli.StringArg{
+					Name: "name",
+				},
+			},
+			Action: func(_ context.Context, c *cli.Command) error {
+				name := c.StringArg("name")
+				if name == "" {
+					return errors.New("missing repository name")
+				}
+
+				return internal.GenerateRepository(name)
 			},
 		},
 	}
