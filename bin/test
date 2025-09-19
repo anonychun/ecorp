@@ -1,0 +1,12 @@
+#!/bin/bash -e
+
+source .env
+export DATABASE_SQL_NAME="${DATABASE_SQL_NAME}_test"
+
+./bin/db reset
+
+if [ $# -eq 0 ]; then
+	go test -v ./...
+else
+	go test -v "${@}"
+fi
