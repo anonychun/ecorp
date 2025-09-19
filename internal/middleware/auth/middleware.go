@@ -1,23 +1,41 @@
 package auth
 
 import (
-	"github.com/anonychun/ecorp/internal/bootstrap"
-	"github.com/anonychun/ecorp/internal/repository"
-	"github.com/samber/do"
+	"slices"
+
+	"github.com/anonychun/ecorp/internal/consts"
+	"github.com/anonychun/ecorp/internal/current"
+	"github.com/labstack/echo/v4"
 )
 
-func init() {
-	do.ProvideNamed(bootstrap.Injector, MiddlewareInjectorName, NewMiddleware)
-}
+func (m *Middleware) AuthenticateAdmin(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		bypassedPaths := []string{
+			"/api/v1/admin/auth/login",
+		}
 
-const MiddlewareInjectorName = "middleware.auth"
+		if slices.Contains(bypassedPaths, c.Request().URL.Path) {
+			return next(c)
+		}
 
-type Middleware struct {
-	repository *repository.Repository
-}
+		cookie, err := c.Cookie(consts.CookieAdminSession)
+		if err != nil {
+			return consts.ErrUnauthorized
+		}
 
-func NewMiddleware(i *do.Injector) (*Middleware, error) {
-	return &Middleware{
-		repository: do.MustInvoke[*repository.Repository](i),
-	}, nil
+		adminSession, err := m.repository.AdminSession.FindByToken(c.Request().Context(), cookie.Value)
+		if err != nil {
+			return consts.ErrUnauthorized
+		}
+
+		admin, err := m.repository.Admin.FindById(c.Request().Context(), adminSession.AdminId.String())
+		if err != nil {
+			return consts.ErrUnauthorized
+		}
+
+		ctx := current.SetAdmin(c.Request().Context(), admin)
+		c.SetRequest(c.Request().WithContext(ctx))
+
+		return next(c)
+	}
 }
