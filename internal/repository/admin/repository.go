@@ -44,10 +44,6 @@ func (r *Repository) Update(ctx context.Context, admin *entity.Admin) error {
 	return r.sql.DB(ctx).Save(admin).Error
 }
 
-func (r *Repository) DeleteById(ctx context.Context, id string) error {
-	return r.sql.DB(ctx).Delete(&entity.Admin{}, "id = ?", id).Error
-}
-
 func (r *Repository) ExistsById(ctx context.Context, id string) (bool, error) {
 	var exists bool
 	err := r.sql.DB(ctx).Raw("SELECT 1 FROM admins WHERE id = ?", id).Scan(&exists).Error
