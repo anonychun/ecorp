@@ -9,7 +9,11 @@ import (
 )
 
 func (h *Handler) SignUp(c echo.Context) error {
-	req := SignUpRequest{}
+	req := SignUpRequest{
+		IpAddress: c.RealIP(),
+		UserAgent: c.Request().UserAgent(),
+	}
+
 	err := c.Bind(&req)
 	if err != nil {
 		return err
