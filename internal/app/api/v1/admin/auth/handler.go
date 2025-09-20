@@ -13,6 +13,7 @@ func (h *Handler) SignIn(c echo.Context) error {
 		IpAddress: c.RealIP(),
 		UserAgent: c.Request().UserAgent(),
 	}
+
 	err := c.Bind(&req)
 	if err != nil {
 		return err

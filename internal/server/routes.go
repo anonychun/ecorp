@@ -43,7 +43,6 @@ func routes(e *echo.Echo) error {
 
 		namespace(e, "/landing", func(e *echo.Group) {
 		})
-
 	})
 
 	return nil

@@ -43,7 +43,8 @@ func (u *Usecase) Create(ctx context.Context, req CreateRequest) (*AdminDto, err
 		return nil, err
 	}
 
-	if err := u.repository.Admin.Create(ctx, admin); err != nil {
+	err = u.repository.Admin.Create(ctx, admin)
+	if err != nil {
 		return nil, err
 	}
 
@@ -61,7 +62,8 @@ func (u *Usecase) Update(ctx context.Context, req UpdateRequest) (*AdminDto, err
 	admin.Name = req.Name
 	admin.EmailAddress = req.EmailAddress
 
-	if err := u.repository.Admin.Update(ctx, admin); err != nil {
+	err = u.repository.Admin.Update(ctx, admin)
+	if err != nil {
 		return nil, err
 	}
 
