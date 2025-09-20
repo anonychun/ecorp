@@ -8,7 +8,7 @@ import (
 	"github.com/anonychun/ecorp/internal/entity"
 )
 
-func (u *Usecase) Login(ctx context.Context, req LoginRequest) (*LoginResponse, error) {
+func (u *Usecase) SignIn(ctx context.Context, req SignInRequest) (*SignInResponse, error) {
 	admin, err := u.repository.Admin.FindByEmailAddress(ctx, req.EmailAddress)
 	if err == consts.ErrRecordNotFound {
 		return nil, consts.ErrInvalidCredentials
@@ -33,14 +33,10 @@ func (u *Usecase) Login(ctx context.Context, req LoginRequest) (*LoginResponse, 
 		return nil, err
 	}
 
-	res := &LoginResponse{Token: adminSession.Token}
-	res.Admin.Id = admin.Id.String()
-	res.Admin.EmailAddress = admin.EmailAddress
-
-	return res, nil
+	return &SignInResponse{Token: adminSession.Token}, nil
 }
 
-func (u *Usecase) Logout(ctx context.Context, req LogoutRequest) error {
+func (u *Usecase) SignOut(ctx context.Context, req SignOutRequest) error {
 	adminSession, err := u.repository.AdminSession.FindByToken(ctx, req.Token)
 	if err == consts.ErrRecordNotFound {
 		return consts.ErrUnauthorized

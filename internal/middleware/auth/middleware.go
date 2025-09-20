@@ -11,7 +11,7 @@ import (
 func (m *Middleware) AuthenticateAdmin(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		bypassedPaths := []string{
-			"/api/v1/admin/auth/login",
+			"/api/v1/admin/auth/signin",
 		}
 
 		if slices.Contains(bypassedPaths, c.Request().URL.Path) {

@@ -27,8 +27,8 @@ func routes(e *echo.Echo) error {
 		namespace(e, "/admin", func(e *echo.Group) {
 			e.Use(m.Auth.AuthenticateAdmin)
 
-			e.POST("/auth/login", h.Api.V1.Admin.Auth.Login)
-			e.POST("/auth/logout", h.Api.V1.Admin.Auth.Logout)
+			e.POST("/auth/signin", h.Api.V1.Admin.Auth.SignIn)
+			e.POST("/auth/signout", h.Api.V1.Admin.Auth.SignOut)
 			e.GET("/auth/me", h.Api.V1.Admin.Auth.Me)
 
 			e.GET("/admin", h.Api.V1.Admin.Admin.FindAll)

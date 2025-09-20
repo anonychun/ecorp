@@ -1,21 +1,17 @@
 package auth
 
-type LoginRequest struct {
+type SignInRequest struct {
 	IpAddress    string `json:"-"`
 	UserAgent    string `json:"-"`
 	EmailAddress string `json:"emailAddress" validate:"required"`
 	Password     string `json:"password" validate:"required"`
 }
 
-type LoginResponse struct {
-	Token string `json:"-"`
-	Admin struct {
-		Id           string `json:"id"`
-		EmailAddress string `json:"emailAddress"`
-	} `json:"admin"`
+type SignInResponse struct {
+	Token string
 }
 
-type LogoutRequest struct {
+type SignOutRequest struct {
 	Token string
 }
 

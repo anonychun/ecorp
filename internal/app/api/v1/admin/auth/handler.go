@@ -8,8 +8,8 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func (h *Handler) Login(c echo.Context) error {
-	req := LoginRequest{
+func (h *Handler) SignIn(c echo.Context) error {
+	req := SignInRequest{
 		IpAddress: c.RealIP(),
 		UserAgent: c.Request().UserAgent(),
 	}
@@ -18,7 +18,7 @@ func (h *Handler) Login(c echo.Context) error {
 		return err
 	}
 
-	res, err := h.usecase.Login(c.Request().Context(), req)
+	res, err := h.usecase.SignIn(c.Request().Context(), req)
 	if err != nil {
 		return err
 	}
@@ -30,20 +30,20 @@ func (h *Handler) Login(c echo.Context) error {
 		HttpOnly: true,
 	})
 
-	return api.NewResponse(c).SetData(res).Send()
+	return api.NewResponse(c).SendOk()
 }
 
-func (h *Handler) Logout(c echo.Context) error {
+func (h *Handler) SignOut(c echo.Context) error {
 	cookie, err := c.Cookie(consts.CookieAdminSession)
 	if err != nil {
 		return err
 	}
 
-	req := LogoutRequest{
+	req := SignOutRequest{
 		Token: cookie.Value,
 	}
 
-	err = h.usecase.Logout(c.Request().Context(), req)
+	err = h.usecase.SignOut(c.Request().Context(), req)
 	if err != nil {
 		return err
 	}
