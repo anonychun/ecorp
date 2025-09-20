@@ -15,8 +15,8 @@ type SignUpResponse struct {
 type SignInRequest struct {
 	IpAddress    string `json:"-"`
 	UserAgent    string `json:"-"`
-	EmailAddress string `json:"emailAddress" validate:"required"`
-	Password     string `json:"password" validate:"required"`
+	EmailAddress string `json:"emailAddress"`
+	Password     string `json:"password"`
 }
 
 type SignInResponse struct {
