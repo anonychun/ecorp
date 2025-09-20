@@ -69,23 +69,3 @@ func (u *Usecase) Update(ctx context.Context, req UpdateRequest) (*AdminDto, err
 
 	return NewAdminDto(admin), nil
 }
-
-func (u *Usecase) Delete(ctx context.Context, req DeleteRequest) error {
-	exists, err := u.repository.Admin.ExistsById(ctx, req.Id)
-	if err != nil {
-		return err
-	}
-
-	if !exists {
-		return consts.ErrAdminNotFound
-	}
-
-	return u.repository.Transaction(ctx, func(ctx context.Context) error {
-		err := u.repository.AdminSession.DeleteAllByAdminId(ctx, req.Id)
-		if err != nil {
-			return err
-		}
-
-		return u.repository.Admin.DeleteById(ctx, req.Id)
-	})
-}

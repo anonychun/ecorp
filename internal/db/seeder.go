@@ -40,7 +40,6 @@ func (s *Seeder) Seed(ctx context.Context) error {
 		return err
 	}
 
-	defaultAdmin.DeletedAt = nil
 	err = s.sql.DB(ctx).Save(defaultAdmin).Error
 	if err != nil {
 		return err

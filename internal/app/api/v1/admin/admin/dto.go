@@ -29,7 +29,3 @@ type UpdateRequest struct {
 	Name         string `json:"name"`
 	EmailAddress string `json:"email_address"`
 }
-
-type DeleteRequest struct {
-	Id string `param:"id"`
-}

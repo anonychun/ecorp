@@ -23,6 +23,11 @@ func (as *AdminSession) BeforeCreate(tx *gorm.DB) error {
 	return nil
 }
 
+func (as *AdminSession) BeforeUpdate(tx *gorm.DB) error {
+	as.UpdatedAt = time.Now()
+	return nil
+}
+
 func (as *AdminSession) GenerateToken() {
 	as.Token = ulid.Make().String()
 }

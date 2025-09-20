@@ -60,18 +60,3 @@ func (h *Handler) Update(c echo.Context) error {
 
 	return api.NewResponse(c).SetData(res).Send()
 }
-
-func (h *Handler) Delete(c echo.Context) error {
-	var req DeleteRequest
-	err := c.Bind(&req)
-	if err != nil {
-		return err
-	}
-
-	err = h.usecase.Delete(c.Request().Context(), req)
-	if err != nil {
-		return err
-	}
-
-	return c.NoContent(http.StatusNoContent)
-}

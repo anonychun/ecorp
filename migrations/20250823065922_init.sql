@@ -5,7 +5,6 @@ CREATE TABLE admins (
     name TEXT NOT NULL,
     email_address TEXT UNIQUE NOT NULL,
     password_digest TEXT NOT NULL,
-    deleted_at TIMESTAMPTZ,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );

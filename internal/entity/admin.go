@@ -13,13 +13,17 @@ type Admin struct {
 	Name           string
 	EmailAddress   string
 	PasswordDigest string
-	DeletedAt      *time.Time
 	CreatedAt      time.Time
 	UpdatedAt      time.Time
 }
 
 func (a *Admin) BeforeCreate(tx *gorm.DB) error {
 	a.Id = uuid.Must(uuid.NewV7())
+	return nil
+}
+
+func (a *Admin) BeforeUpdate(tx *gorm.DB) error {
+	a.UpdatedAt = time.Now()
 	return nil
 }
 

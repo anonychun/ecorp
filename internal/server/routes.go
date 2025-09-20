@@ -35,7 +35,6 @@ func routes(e *echo.Echo) error {
 			e.GET("/admin/:id", h.Api.V1.Admin.Admin.FindById)
 			e.POST("/admin", h.Api.V1.Admin.Admin.Create)
 			e.PUT("/admin/:id", h.Api.V1.Admin.Admin.Update)
-			e.DELETE("/admin/:id", h.Api.V1.Admin.Admin.Delete)
 		})
 
 		namespace(e, "/app", func(e *echo.Group) {
