@@ -60,6 +60,7 @@ func (u *Usecase) Me(ctx context.Context) (*MeResponse, error) {
 
 	res := &MeResponse{}
 	res.Admin.Id = admin.Id.String()
+	res.Admin.Name = admin.Name
 	res.Admin.EmailAddress = admin.EmailAddress
 
 	return res, nil

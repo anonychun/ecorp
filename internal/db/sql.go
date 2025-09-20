@@ -34,7 +34,12 @@ func NewSql(i *do.Injector) (*Sql, error) {
 		cfg.Database.Sql.Port,
 	)
 
-	gormDB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{Logger: logger.Default.LogMode(logger.Info)})
+	gormConfig := &gorm.Config{
+		QueryFields: true,
+		Logger:      logger.Default.LogMode(logger.Info),
+	}
+
+	gormDB, err := gorm.Open(postgres.Open(dsn), gormConfig)
 	if err != nil {
 		return nil, err
 	}

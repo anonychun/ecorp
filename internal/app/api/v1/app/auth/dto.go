@@ -1,5 +1,17 @@
 package auth
 
+type SignUpRequest struct {
+	IpAddress    string `json:"-"`
+	UserAgent    string `json:"-"`
+	Name         string `json:"name"`
+	EmailAddress string `json:"emailAddress"`
+	Password     string `json:"password"`
+}
+
+type SignUpResponse struct {
+	Token string
+}
+
 type SignInRequest struct {
 	IpAddress    string `json:"-"`
 	UserAgent    string `json:"-"`
@@ -16,9 +28,9 @@ type SignOutRequest struct {
 }
 
 type MeResponse struct {
-	Admin struct {
+	User struct {
 		Id           string `json:"id"`
 		Name         string `json:"name"`
 		EmailAddress string `json:"emailAddress"`
-	} `json:"admin"`
+	} `json:"user"`
 }

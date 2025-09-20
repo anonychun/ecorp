@@ -8,10 +8,10 @@ import (
 	"gorm.io/gorm"
 )
 
-type AdminSession struct {
+type UserSession struct {
 	Id        uuid.UUID
-	AdminId   uuid.UUID
-	Admin     *Admin
+	UserId    uuid.UUID
+	User      *User
 	Token     string
 	IpAddress string
 	UserAgent string
@@ -19,16 +19,16 @@ type AdminSession struct {
 	UpdatedAt time.Time
 }
 
-func (as *AdminSession) BeforeCreate(tx *gorm.DB) error {
+func (as *UserSession) BeforeCreate(tx *gorm.DB) error {
 	as.Id = uuid.Must(uuid.NewV7())
 	return nil
 }
 
-func (as *AdminSession) BeforeUpdate(tx *gorm.DB) error {
+func (as *UserSession) BeforeUpdate(tx *gorm.DB) error {
 	as.UpdatedAt = time.Now()
 	return nil
 }
 
-func (as *AdminSession) GenerateToken() {
+func (as *UserSession) GenerateToken() {
 	as.Token = ulid.Make().String()
 }

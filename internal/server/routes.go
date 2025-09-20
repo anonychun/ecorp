@@ -38,6 +38,12 @@ func routes(e *echo.Echo) error {
 		})
 
 		namespace(e, "/app", func(e *echo.Group) {
+			e.Use(m.Auth.AuthenticateUser)
+
+			e.POST("/auth/signup", h.Api.V1.App.Auth.SignUp)
+			e.POST("/auth/signin", h.Api.V1.App.Auth.SignIn)
+			e.POST("/auth/signout", h.Api.V1.App.Auth.SignOut)
+			e.GET("/auth/me", h.Api.V1.App.Auth.Me)
 		})
 
 		namespace(e, "/landing", func(e *echo.Group) {

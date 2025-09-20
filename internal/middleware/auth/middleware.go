@@ -39,3 +39,36 @@ func (m *Middleware) AuthenticateAdmin(next echo.HandlerFunc) echo.HandlerFunc {
 		return next(c)
 	}
 }
+
+func (m *Middleware) AuthenticateUser(next echo.HandlerFunc) echo.HandlerFunc {
+	return func(c echo.Context) error {
+		bypassedPaths := []string{
+			"/api/v1/app/auth/signup",
+			"/api/v1/app/auth/signin",
+		}
+
+		if slices.Contains(bypassedPaths, c.Request().URL.Path) {
+			return next(c)
+		}
+
+		cookie, err := c.Cookie(consts.CookieUserSession)
+		if err != nil {
+			return consts.ErrUnauthorized
+		}
+
+		userSession, err := m.repository.UserSession.FindByToken(c.Request().Context(), cookie.Value)
+		if err != nil {
+			return consts.ErrUnauthorized
+		}
+
+		user, err := m.repository.User.FindById(c.Request().Context(), userSession.UserId.String())
+		if err != nil {
+			return consts.ErrUnauthorized
+		}
+
+		ctx := current.SetUser(c.Request().Context(), user)
+		c.SetRequest(c.Request().WithContext(ctx))
+
+		return next(c)
+	}
+}
