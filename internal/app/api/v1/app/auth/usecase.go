@@ -6,6 +6,7 @@ import (
 	"github.com/anonychun/ecorp/internal/consts"
 	"github.com/anonychun/ecorp/internal/current"
 	"github.com/anonychun/ecorp/internal/entity"
+	"github.com/anonychun/ecorp/internal/repository"
 )
 
 func (u *Usecase) SignUp(ctx context.Context, req SignUpRequest) (*SignUpResponse, error) {
@@ -29,7 +30,7 @@ func (u *Usecase) SignUp(ctx context.Context, req SignUpRequest) (*SignUpRespons
 	}
 
 	res := &SignUpResponse{}
-	u.repository.Transaction(ctx, func(ctx context.Context) error {
+	repository.Transaction(ctx, func(ctx context.Context) error {
 		err = u.repository.User.Create(ctx, user)
 		if err != nil {
 			return err

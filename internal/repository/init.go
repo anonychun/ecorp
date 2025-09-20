@@ -38,8 +38,13 @@ func NewRepository(i *do.Injector) (*Repository, error) {
 	}, nil
 }
 
-func (r *Repository) Transaction(ctx context.Context, fn func(ctx context.Context) error) error {
-	return r.sql.DB(ctx).Transaction(func(tx *gorm.DB) error {
+func Transaction(ctx context.Context, fn func(ctx context.Context) error) error {
+	sql, err := do.Invoke[*db.Sql](bootstrap.Injector)
+	if err != nil {
+		return err
+	}
+
+	return sql.DB(ctx).Transaction(func(tx *gorm.DB) error {
 		ctx = current.SetTx(ctx, tx)
 		return fn(ctx)
 	})
