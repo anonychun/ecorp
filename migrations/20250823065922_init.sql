@@ -3,7 +3,7 @@
 CREATE TABLE admins (
     id UUID PRIMARY KEY,
     name TEXT NOT NULL,
-    email_address TEXT UNIQUE NOT NULL,
+    email_address TEXT NOT NULL UNIQUE,
     password_digest TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -11,8 +11,8 @@ CREATE TABLE admins (
 
 CREATE TABLE admin_sessions (
     id UUID PRIMARY KEY,
-    admin_id UUID REFERENCES admins(id),
-    token TEXT UNIQUE NOT NULL,
+    admin_id UUID NOT NULL REFERENCES admins(id),
+    token TEXT NOT NULL UNIQUE,
     ip_address TEXT NOT NULL,
     user_agent TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -22,7 +22,7 @@ CREATE TABLE admin_sessions (
 CREATE TABLE users (
     id UUID PRIMARY KEY,
     name TEXT NOT NULL,
-    email_address TEXT UNIQUE NOT NULL,
+    email_address TEXT NOT NULL UNIQUE,
     password_digest TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
@@ -30,8 +30,8 @@ CREATE TABLE users (
 
 CREATE TABLE user_sessions (
     id UUID PRIMARY KEY,
-    user_id UUID REFERENCES users(id),
-    token TEXT UNIQUE NOT NULL,
+    user_id UUID NOT NULL REFERENCES users(id),
+    token TEXT NOT NULL UNIQUE,
     ip_address TEXT NOT NULL,
     user_agent TEXT NOT NULL,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
