@@ -1,41 +1,41 @@
 -- +goose Up
 -- +goose StatementBegin
 CREATE TABLE admins (
-    id UUID PRIMARY KEY,
-    name TEXT NOT NULL,
-    email_address TEXT NOT NULL UNIQUE,
-    password_digest TEXT NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+	id UUID PRIMARY KEY,
+	name TEXT NOT NULL,
+	email_address TEXT NOT NULL UNIQUE,
+	password_digest TEXT NOT NULL,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE admin_sessions (
-    id UUID PRIMARY KEY,
-    admin_id UUID NOT NULL REFERENCES admins(id),
-    token TEXT NOT NULL UNIQUE,
-    ip_address TEXT NOT NULL,
-    user_agent TEXT NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+	id UUID PRIMARY KEY,
+	admin_id UUID NOT NULL REFERENCES admins(id),
+	token TEXT NOT NULL UNIQUE,
+	ip_address TEXT NOT NULL,
+	user_agent TEXT NOT NULL,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE users (
-    id UUID PRIMARY KEY,
-    name TEXT NOT NULL,
-    email_address TEXT NOT NULL UNIQUE,
-    password_digest TEXT NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+	id UUID PRIMARY KEY,
+	name TEXT NOT NULL,
+	email_address TEXT NOT NULL UNIQUE,
+	password_digest TEXT NOT NULL,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 
 CREATE TABLE user_sessions (
-    id UUID PRIMARY KEY,
-    user_id UUID NOT NULL REFERENCES users(id),
-    token TEXT NOT NULL UNIQUE,
-    ip_address TEXT NOT NULL,
-    user_agent TEXT NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+	id UUID PRIMARY KEY,
+	user_id UUID NOT NULL REFERENCES users(id),
+	token TEXT NOT NULL UNIQUE,
+	ip_address TEXT NOT NULL,
+	user_agent TEXT NOT NULL,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
 -- +goose StatementEnd
 
