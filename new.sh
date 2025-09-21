@@ -3,14 +3,14 @@ set -euo pipefail
 
 # Check if project name is provided as argument
 if [ $# -eq 0 ]; then
-  echo -e "\033[31m❌ Project name required!\033[0m"
-  echo ""
-  echo -e "\033[1mUsage:\033[0m"
-  echo -e "  \033[36mwget -qO- \033[34mhttps://raw.githubusercontent.com/anonychun/ecorp/refs/heads/main/new.sh \033[33m| \033[36mbash -s \033[32m<project-name>\033[0m"
-  echo ""
-  echo -e "\033[1mExample:\033[0m"
-  echo -e "  \033[36mwget -qO- \033[34mhttps://raw.githubusercontent.com/anonychun/ecorp/refs/heads/main/new.sh \033[33m| \033[36mbash -s \033[32mgithub.com/anonychun/verification-api\033[0m"
-  exit 1
+	echo -e "\033[31m❌ Project name required!\033[0m"
+	echo ""
+	echo -e "\033[1mUsage:\033[0m"
+	echo -e "  \033[36mwget -qO- \033[34mhttps://raw.githubusercontent.com/anonychun/ecorp/refs/heads/main/new.sh \033[33m| \033[36mbash -s \033[32m<project-name>\033[0m"
+	echo ""
+	echo -e "\033[1mExample:\033[0m"
+	echo -e "  \033[36mwget -qO- \033[34mhttps://raw.githubusercontent.com/anonychun/ecorp/refs/heads/main/new.sh \033[33m| \033[36mbash -s \033[32mgithub.com/anonychun/verification-api\033[0m"
+	exit 1
 fi
 
 PROJECT="$1"
