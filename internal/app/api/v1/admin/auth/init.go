@@ -3,24 +3,19 @@ package auth
 import (
 	"github.com/anonychun/ecorp/internal/bootstrap"
 	"github.com/anonychun/ecorp/internal/repository"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 )
 
 func init() {
-	do.ProvideNamed(bootstrap.Injector, UsecaseInjectorName, NewUsecase)
-	do.ProvideNamed(bootstrap.Injector, HandlerInjectorName, NewHandler)
+	do.Provide(bootstrap.Injector, NewUsecase)
+	do.Provide(bootstrap.Injector, NewHandler)
 }
-
-const (
-	UsecaseInjectorName = "usecase.api.v1.admin.auth"
-	HandlerInjectorName = "handler.api.v1.admin.auth"
-)
 
 type Usecase struct {
 	repository *repository.Repository
 }
 
-func NewUsecase(i *do.Injector) (*Usecase, error) {
+func NewUsecase(i do.Injector) (*Usecase, error) {
 	return &Usecase{
 		repository: do.MustInvoke[*repository.Repository](i),
 	}, nil
@@ -30,8 +25,8 @@ type Handler struct {
 	usecase *Usecase
 }
 
-func NewHandler(i *do.Injector) (*Handler, error) {
+func NewHandler(i do.Injector) (*Handler, error) {
 	return &Handler{
-		usecase: do.MustInvokeNamed[*Usecase](i, UsecaseInjectorName),
+		usecase: do.MustInvoke[*Usecase](i),
 	}, nil
 }

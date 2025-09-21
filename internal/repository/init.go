@@ -10,7 +10,7 @@ import (
 	"github.com/anonychun/ecorp/internal/repository/admin_session"
 	"github.com/anonychun/ecorp/internal/repository/user"
 	"github.com/anonychun/ecorp/internal/repository/user_session"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 	"gorm.io/gorm"
 )
 
@@ -19,22 +19,18 @@ func init() {
 }
 
 type Repository struct {
-	sql *db.Sql
-
 	Admin        *admin.Repository
 	AdminSession *admin_session.Repository
 	User         *user.Repository
 	UserSession  *user_session.Repository
 }
 
-func NewRepository(i *do.Injector) (*Repository, error) {
+func NewRepository(i do.Injector) (*Repository, error) {
 	return &Repository{
-		sql: do.MustInvoke[*db.Sql](i),
-
-		Admin:        do.MustInvokeNamed[*admin.Repository](i, admin.RepositoryInjectorName),
-		AdminSession: do.MustInvokeNamed[*admin_session.Repository](i, admin_session.RepositoryInjectorName),
-		User:         do.MustInvokeNamed[*user.Repository](i, user.RepositoryInjectorName),
-		UserSession:  do.MustInvokeNamed[*user_session.Repository](i, user_session.RepositoryInjectorName),
+		Admin:        do.MustInvoke[*admin.Repository](i),
+		AdminSession: do.MustInvoke[*admin_session.Repository](i),
+		User:         do.MustInvoke[*user.Repository](i),
+		UserSession:  do.MustInvoke[*user_session.Repository](i),
 	}, nil
 }
 

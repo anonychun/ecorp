@@ -6,7 +6,7 @@ import (
 	"github.com/anonychun/ecorp/internal/bootstrap"
 	"github.com/anonychun/ecorp/migrations"
 	"github.com/pressly/goose/v3"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 )
 
 func init() {
@@ -17,7 +17,7 @@ type Migrator struct {
 	provider *goose.Provider
 }
 
-func NewMigrator(i *do.Injector) (*Migrator, error) {
+func NewMigrator(i do.Injector) (*Migrator, error) {
 	provider, err := goose.NewProvider(
 		"postgres",
 		do.MustInvoke[*Sql](i).sqlDB,

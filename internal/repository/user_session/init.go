@@ -3,20 +3,18 @@ package user_session
 import (
 	"github.com/anonychun/ecorp/internal/bootstrap"
 	"github.com/anonychun/ecorp/internal/db"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 )
 
 func init() {
-	do.ProvideNamed(bootstrap.Injector, RepositoryInjectorName, NewRepository)
+	do.Provide(bootstrap.Injector, NewRepository)
 }
-
-const RepositoryInjectorName = "repository.user_session"
 
 type Repository struct {
 	sql *db.Sql
 }
 
-func NewRepository(i *do.Injector) (*Repository, error) {
+func NewRepository(i do.Injector) (*Repository, error) {
 	return &Repository{
 		sql: do.MustInvoke[*db.Sql](i),
 	}, nil

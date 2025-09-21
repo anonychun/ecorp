@@ -4,28 +4,23 @@ import (
 	"github.com/anonychun/ecorp/internal/app/api/v1/admin"
 	"github.com/anonychun/ecorp/internal/app/api/v1/app"
 	"github.com/anonychun/ecorp/internal/bootstrap"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 )
 
 func init() {
-	do.ProvideNamed(bootstrap.Injector, UsecaseInjectorName, NewUsecase)
-	do.ProvideNamed(bootstrap.Injector, HandlerInjectorName, NewHandler)
+	do.Provide(bootstrap.Injector, NewUsecase)
+	do.Provide(bootstrap.Injector, NewHandler)
 }
-
-const (
-	UsecaseInjectorName = "usecase.api.v1"
-	HandlerInjectorName = "handler.api.v1"
-)
 
 type Usecase struct {
 	Admin *admin.Usecase
 	App   *app.Usecase
 }
 
-func NewUsecase(i *do.Injector) (*Usecase, error) {
+func NewUsecase(i do.Injector) (*Usecase, error) {
 	return &Usecase{
-		Admin: do.MustInvokeNamed[*admin.Usecase](i, admin.UsecaseInjectorName),
-		App:   do.MustInvokeNamed[*app.Usecase](i, app.UsecaseInjectorName),
+		Admin: do.MustInvoke[*admin.Usecase](i),
+		App:   do.MustInvoke[*app.Usecase](i),
 	}, nil
 }
 
@@ -34,9 +29,9 @@ type Handler struct {
 	App   *app.Handler
 }
 
-func NewHandler(i *do.Injector) (*Handler, error) {
+func NewHandler(i do.Injector) (*Handler, error) {
 	return &Handler{
-		Admin: do.MustInvokeNamed[*admin.Handler](i, admin.HandlerInjectorName),
-		App:   do.MustInvokeNamed[*app.Handler](i, app.HandlerInjectorName),
+		Admin: do.MustInvoke[*admin.Handler](i),
+		App:   do.MustInvoke[*app.Handler](i),
 	}, nil
 }

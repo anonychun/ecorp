@@ -7,7 +7,7 @@ import (
 	"github.com/anonychun/ecorp/internal/middleware"
 	"github.com/labstack/echo/v4"
 	echomiddleware "github.com/labstack/echo/v4/middleware"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 )
 
 func namespace(e *echo.Group, path string, f func(e *echo.Group)) {

@@ -7,7 +7,7 @@ import (
 
 	"github.com/anonychun/ecorp/internal/bootstrap"
 	"github.com/anonychun/ecorp/internal/db"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 	"github.com/urfave/cli/v3"
 )
 

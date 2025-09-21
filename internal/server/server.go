@@ -12,7 +12,7 @@ import (
 	"github.com/anonychun/ecorp/internal/bootstrap"
 	"github.com/anonychun/ecorp/internal/config"
 	"github.com/labstack/echo/v4"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 )
 
 func Start(ctx context.Context) error {

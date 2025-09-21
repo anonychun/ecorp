@@ -4,7 +4,7 @@ import (
 	"github.com/anonychun/ecorp/internal/bootstrap"
 	"github.com/joho/godotenv"
 	"github.com/kelseyhightower/envconfig"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 )
 
 func init() {
@@ -27,7 +27,7 @@ type Config struct {
 	} `envconfig:"database"`
 }
 
-func NewConfig(i *do.Injector) (*Config, error) {
+func NewConfig(i do.Injector) (*Config, error) {
 	godotenv.Load(".env")
 
 	config := &Config{}

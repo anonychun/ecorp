@@ -3,7 +3,7 @@ package app
 import (
 	"github.com/anonychun/ecorp/internal/app/api"
 	"github.com/anonychun/ecorp/internal/bootstrap"
-	"github.com/samber/do"
+	"github.com/samber/do/v2"
 )
 
 func init() {
@@ -15,9 +15,9 @@ type Usecase struct {
 	Api *api.Usecase
 }
 
-func NewUsecase(i *do.Injector) (*Usecase, error) {
+func NewUsecase(i do.Injector) (*Usecase, error) {
 	return &Usecase{
-		Api: do.MustInvokeNamed[*api.Usecase](i, api.UsecaseInjectorName),
+		Api: do.MustInvoke[*api.Usecase](i),
 	}, nil
 }
 
@@ -25,8 +25,8 @@ type Handler struct {
 	Api *api.Handler
 }
 
-func NewHandler(i *do.Injector) (*Handler, error) {
+func NewHandler(i do.Injector) (*Handler, error) {
 	return &Handler{
-		Api: do.MustInvokeNamed[*api.Handler](i, api.HandlerInjectorName),
+		Api: do.MustInvoke[*api.Handler](i),
 	}, nil
 }
