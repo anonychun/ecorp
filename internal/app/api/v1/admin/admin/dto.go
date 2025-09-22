@@ -7,7 +7,7 @@ type AdminDto struct {
 	Name string `json:"name"`
 }
 
-func NewAdminDto(admin *entity.Admin) *AdminDto {
+func ToAdminDto(admin *entity.Admin) *AdminDto {
 	return &AdminDto{
 		Id:   admin.Id.String(),
 		Name: admin.Name,

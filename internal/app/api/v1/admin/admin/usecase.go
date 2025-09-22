@@ -15,7 +15,7 @@ func (u *Usecase) FindAll(ctx context.Context) ([]*AdminDto, error) {
 	}
 
 	res := lo.Map(admins, func(admin *entity.Admin, _ int) *AdminDto {
-		return NewAdminDto(admin)
+		return ToAdminDto(admin)
 	})
 
 	return res, nil
@@ -29,7 +29,7 @@ func (u *Usecase) FindById(ctx context.Context, req FindByIdRequest) (*AdminDto,
 		return nil, err
 	}
 
-	return NewAdminDto(admin), nil
+	return ToAdminDto(admin), nil
 }
 
 func (u *Usecase) Create(ctx context.Context, req CreateRequest) (*AdminDto, error) {
@@ -48,7 +48,7 @@ func (u *Usecase) Create(ctx context.Context, req CreateRequest) (*AdminDto, err
 		return nil, err
 	}
 
-	return NewAdminDto(admin), nil
+	return ToAdminDto(admin), nil
 }
 
 func (u *Usecase) Update(ctx context.Context, req UpdateRequest) (*AdminDto, error) {
@@ -67,5 +67,5 @@ func (u *Usecase) Update(ctx context.Context, req UpdateRequest) (*AdminDto, err
 		return nil, err
 	}
 
-	return NewAdminDto(admin), nil
+	return ToAdminDto(admin), nil
 }
