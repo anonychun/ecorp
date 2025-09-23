@@ -2,7 +2,7 @@ package config
 
 import (
 	"github.com/anonychun/ecorp/internal/bootstrap"
-	"github.com/joho/godotenv"
+	_ "github.com/joho/godotenv/autoload"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/samber/do/v2"
 )
@@ -28,8 +28,6 @@ type Config struct {
 }
 
 func NewConfig(i do.Injector) (*Config, error) {
-	godotenv.Load(".env")
-
 	config := &Config{}
 	err := envconfig.Process("", config)
 	if err != nil {
