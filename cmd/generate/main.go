@@ -69,6 +69,23 @@ func main() {
 				return internal.GenerateRepository(name)
 			},
 		},
+		{
+			Name:  "entity",
+			Usage: "Generate a new entity",
+			Arguments: []cli.Argument{
+				&cli.StringArg{
+					Name: "name",
+				},
+			},
+			Action: func(_ context.Context, c *cli.Command) error {
+				name := c.StringArg("name")
+				if name == "" {
+					return errors.New("missing entity name")
+				}
+
+				return internal.GenerateEntity(name)
+			},
+		},
 	}
 
 	err := cmd.Run(context.Background(), os.Args)
