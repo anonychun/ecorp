@@ -17,8 +17,7 @@ type SignOutRequest struct {
 
 type MeResponse struct {
 	Admin struct {
-		Id           string `json:"id"`
-		Name         string `json:"name"`
-		EmailAddress string `json:"emailAddress"`
+		Id   string `json:"id"`
+		Name string `json:"name"`
 	} `json:"admin"`
 }

@@ -2,13 +2,13 @@ package admin
 
 import "github.com/anonychun/ecorp/internal/entity"
 
-type AdminDto struct {
+type AdminBlueprint struct {
 	Id   string `json:"id"`
 	Name string `json:"name"`
 }
 
-func ToAdminDto(admin *entity.Admin) *AdminDto {
-	return &AdminDto{
+func NewAdminBlueprint(admin *entity.Admin) *AdminBlueprint {
+	return &AdminBlueprint{
 		Id:   admin.Id.String(),
 		Name: admin.Name,
 	}

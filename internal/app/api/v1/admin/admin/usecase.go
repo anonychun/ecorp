@@ -8,20 +8,20 @@ import (
 	"github.com/samber/lo"
 )
 
-func (u *Usecase) FindAll(ctx context.Context) ([]*AdminDto, error) {
+func (u *Usecase) FindAll(ctx context.Context) ([]*AdminBlueprint, error) {
 	admins, err := u.repository.Admin.FindAll(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	res := lo.Map(admins, func(admin *entity.Admin, _ int) *AdminDto {
-		return ToAdminDto(admin)
+	res := lo.Map(admins, func(admin *entity.Admin, _ int) *AdminBlueprint {
+		return NewAdminBlueprint(admin)
 	})
 
 	return res, nil
 }
 
-func (u *Usecase) FindById(ctx context.Context, req FindByIdRequest) (*AdminDto, error) {
+func (u *Usecase) FindById(ctx context.Context, req FindByIdRequest) (*AdminBlueprint, error) {
 	admin, err := u.repository.Admin.FindById(ctx, req.Id)
 	if err == consts.ErrRecordNotFound {
 		return nil, consts.ErrAdminNotFound
@@ -29,10 +29,10 @@ func (u *Usecase) FindById(ctx context.Context, req FindByIdRequest) (*AdminDto,
 		return nil, err
 	}
 
-	return ToAdminDto(admin), nil
+	return NewAdminBlueprint(admin), nil
 }
 
-func (u *Usecase) Create(ctx context.Context, req CreateRequest) (*AdminDto, error) {
+func (u *Usecase) Create(ctx context.Context, req CreateRequest) (*AdminBlueprint, error) {
 	admin := &entity.Admin{
 		Name:         req.Name,
 		EmailAddress: req.EmailAddress,
@@ -48,10 +48,10 @@ func (u *Usecase) Create(ctx context.Context, req CreateRequest) (*AdminDto, err
 		return nil, err
 	}
 
-	return ToAdminDto(admin), nil
+	return NewAdminBlueprint(admin), nil
 }
 
-func (u *Usecase) Update(ctx context.Context, req UpdateRequest) (*AdminDto, error) {
+func (u *Usecase) Update(ctx context.Context, req UpdateRequest) (*AdminBlueprint, error) {
 	admin, err := u.repository.Admin.FindById(ctx, req.Id)
 	if err == consts.ErrRecordNotFound {
 		return nil, consts.ErrAdminNotFound
@@ -67,5 +67,5 @@ func (u *Usecase) Update(ctx context.Context, req UpdateRequest) (*AdminDto, err
 		return nil, err
 	}
 
-	return ToAdminDto(admin), nil
+	return NewAdminBlueprint(admin), nil
 }
