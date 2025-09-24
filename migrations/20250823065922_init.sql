@@ -1,5 +1,14 @@
 -- +goose Up
 -- +goose StatementBegin
+CREATE TABLE attachments (
+	id UUID PRIMARY KEY,
+	object_name TEXT NOT NULL UNIQUE,
+	file_name TEXT NOT NULL,
+	byte_size BIGINT NOT NULL,
+	created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+	updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+
 CREATE TABLE admins (
 	id UUID PRIMARY KEY,
 	name TEXT NOT NULL,
@@ -48,4 +57,6 @@ DROP TABLE users;
 DROP TABLE admin_sessions;
 
 DROP TABLE admins;
+
+DROP TABLE attachments;
 -- +goose StatementEnd
