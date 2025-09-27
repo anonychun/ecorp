@@ -20,12 +20,12 @@ type FindByIdRequest struct {
 
 type CreateRequest struct {
 	Name         string `json:"name"`
-	EmailAddress string `json:"email_address"`
+	EmailAddress string `json:"emailAddress"`
 	Password     string `json:"password"`
 }
 
 type UpdateRequest struct {
 	Id           string `param:"id"`
 	Name         string `json:"name"`
-	EmailAddress string `json:"email_address"`
+	EmailAddress string `json:"emailAddress"`
 }

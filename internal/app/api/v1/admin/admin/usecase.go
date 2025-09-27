@@ -52,6 +52,15 @@ func (u *Usecase) Create(ctx context.Context, req CreateRequest) (*AdminBlueprin
 }
 
 func (u *Usecase) Update(ctx context.Context, req UpdateRequest) (*AdminBlueprint, error) {
+	isEmailAddressExists, err := u.repository.Admin.ExistsByEmailAddressAndNotId(ctx, req.EmailAddress, req.Id)
+	if err != nil {
+		return nil, err
+	}
+
+	if isEmailAddressExists {
+		return nil, consts.ErrEmailAddressAlreadyRegistered
+	}
+
 	admin, err := u.repository.Admin.FindById(ctx, req.Id)
 	if err == consts.ErrRecordNotFound {
 		return nil, consts.ErrAdminNotFound
