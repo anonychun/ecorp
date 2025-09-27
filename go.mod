@@ -1,6 +1,6 @@
 module github.com/anonychun/ecorp
 
-go 1.25
+go 1.25.1
 
 require (
 	github.com/go-co-op/gocron/v2 v2.16.6

@@ -1,4 +1,4 @@
-FROM docker.io/library/golang:1.25.0-trixie AS build
+FROM docker.io/library/golang:1.25.1-trixie AS build
 WORKDIR /app
 
 COPY go.mod go.sum ./
@@ -15,7 +15,7 @@ FROM docker.io/library/debian:trixie-slim
 WORKDIR /app
 
 RUN apt-get update -qq && \
-	apt-get install --no-install-recommends -y curl wget telnet htop vim tmux tini postgresql-client
+    apt-get install --no-install-recommends -y curl wget telnet htop vim tmux tini postgresql-client
 
 COPY --from=build /go/bin/goreman /usr/bin/goreman
 
