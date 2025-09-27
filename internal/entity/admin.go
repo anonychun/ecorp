@@ -1,25 +1,13 @@
 package entity
 
-import (
-	"time"
-
-	"github.com/google/uuid"
-	"golang.org/x/crypto/bcrypt"
-	"gorm.io/gorm"
-)
+import "golang.org/x/crypto/bcrypt"
 
 type Admin struct {
-	Id             uuid.UUID `gorm:"type:uuid;default:uuidv7()"`
+	Base
+
 	Name           string
 	EmailAddress   string
 	PasswordDigest string
-	CreatedAt      time.Time
-	UpdatedAt      time.Time
-}
-
-func (a *Admin) BeforeUpdate(tx *gorm.DB) error {
-	a.UpdatedAt = time.Now()
-	return nil
 }
 
 func (a *Admin) HashPassword(password string) error {

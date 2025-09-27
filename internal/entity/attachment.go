@@ -6,18 +6,16 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/google/uuid"
 	"github.com/oklog/ulid/v2"
 	"gorm.io/gorm"
 )
 
 type Attachment struct {
-	Id         uuid.UUID `gorm:"type:uuid;default:uuidv7()"`
+	Base
+
 	ObjectName string
 	FileName   string
 	ByteSize   int64
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
 }
 
 func (a *Attachment) BeforeUpdate(tx *gorm.DB) error {
