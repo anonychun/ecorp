@@ -9,17 +9,12 @@ import (
 )
 
 type User struct {
-	Id             uuid.UUID
+	Id             uuid.UUID `gorm:"type:uuid;default:uuidv7()"`
 	Name           string
 	EmailAddress   string
 	PasswordDigest string
 	CreatedAt      time.Time
 	UpdatedAt      time.Time
-}
-
-func (u *User) BeforeCreate(tx *gorm.DB) error {
-	u.Id = uuid.Must(uuid.NewV7())
-	return nil
 }
 
 func (u *User) BeforeUpdate(tx *gorm.DB) error {

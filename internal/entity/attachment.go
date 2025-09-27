@@ -12,17 +12,12 @@ import (
 )
 
 type Attachment struct {
-	Id         uuid.UUID
+	Id         uuid.UUID `gorm:"type:uuid;default:uuidv7()"`
 	ObjectName string
 	FileName   string
 	ByteSize   int64
 	CreatedAt  time.Time
 	UpdatedAt  time.Time
-}
-
-func (a *Attachment) BeforeCreate(tx *gorm.DB) error {
-	a.Id = uuid.Must(uuid.NewV7())
-	return nil
 }
 
 func (a *Attachment) BeforeUpdate(tx *gorm.DB) error {

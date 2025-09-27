@@ -9,7 +9,7 @@ import (
 )
 
 type UserSession struct {
-	Id        uuid.UUID
+	Id        uuid.UUID `gorm:"type:uuid;default:uuidv7()"`
 	UserId    uuid.UUID
 	User      *User
 	Token     string
@@ -17,11 +17,6 @@ type UserSession struct {
 	UserAgent string
 	CreatedAt time.Time
 	UpdatedAt time.Time
-}
-
-func (as *UserSession) BeforeCreate(tx *gorm.DB) error {
-	as.Id = uuid.Must(uuid.NewV7())
-	return nil
 }
 
 func (as *UserSession) BeforeUpdate(tx *gorm.DB) error {

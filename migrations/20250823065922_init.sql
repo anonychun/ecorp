@@ -1,7 +1,7 @@
 -- +goose Up
 -- +goose StatementBegin
 CREATE TABLE attachments (
-	id UUID PRIMARY KEY,
+	id UUID PRIMARY KEY DEFAULT uuidv7(),
 	object_name TEXT NOT NULL UNIQUE,
 	file_name TEXT NOT NULL,
 	byte_size BIGINT NOT NULL,
@@ -10,7 +10,7 @@ CREATE TABLE attachments (
 );
 
 CREATE TABLE admins (
-	id UUID PRIMARY KEY,
+	id UUID PRIMARY KEY DEFAULT uuidv7(),
 	name TEXT NOT NULL,
 	email_address TEXT NOT NULL UNIQUE,
 	password_digest TEXT NOT NULL,
@@ -19,7 +19,7 @@ CREATE TABLE admins (
 );
 
 CREATE TABLE admin_sessions (
-	id UUID PRIMARY KEY,
+	id UUID PRIMARY KEY DEFAULT uuidv7(),
 	admin_id UUID NOT NULL REFERENCES admins(id),
 	token TEXT NOT NULL UNIQUE,
 	ip_address TEXT NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE admin_sessions (
 );
 
 CREATE TABLE users (
-	id UUID PRIMARY KEY,
+	id UUID PRIMARY KEY DEFAULT uuidv7(),
 	name TEXT NOT NULL,
 	email_address TEXT NOT NULL UNIQUE,
 	password_digest TEXT NOT NULL,
@@ -38,7 +38,7 @@ CREATE TABLE users (
 );
 
 CREATE TABLE user_sessions (
-	id UUID PRIMARY KEY,
+	id UUID PRIMARY KEY DEFAULT uuidv7(),
 	user_id UUID NOT NULL REFERENCES users(id),
 	token TEXT NOT NULL UNIQUE,
 	ip_address TEXT NOT NULL,
