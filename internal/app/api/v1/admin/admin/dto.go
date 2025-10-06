@@ -19,13 +19,13 @@ type FindByIdRequest struct {
 }
 
 type CreateRequest struct {
-	Name         string `json:"name"`
-	EmailAddress string `json:"emailAddress"`
-	Password     string `json:"password"`
+	Name         string `json:"name" validate:"required" field:"name" label:"Name"`
+	EmailAddress string `json:"emailAddress" validate:"required|email" field:"emailAddress" label:"Email address"`
+	Password     string `json:"password" validate:"required|minLen:8" field:"password" label:"Password"`
 }
 
 type UpdateRequest struct {
 	Id           string `param:"id"`
-	Name         string `json:"name"`
-	EmailAddress string `json:"emailAddress"`
+	Name         string `json:"name" validate:"required" field:"name" label:"Name"`
+	EmailAddress string `json:"emailAddress" validate:"required|email" field:"emailAddress" label:"Email address"`
 }

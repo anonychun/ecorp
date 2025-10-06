@@ -3,8 +3,8 @@ package auth
 type SignInRequest struct {
 	IpAddress    string `json:"-"`
 	UserAgent    string `json:"-"`
-	EmailAddress string `json:"emailAddress"`
-	Password     string `json:"password"`
+	EmailAddress string `json:"emailAddress" validate:"required|email" field:"emailAddress" label:"Email address"`
+	Password     string `json:"password" validate:"required|minLen:8" field:"password" label:"Password"`
 }
 
 type SignInResponse struct {

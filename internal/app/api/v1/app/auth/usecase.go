@@ -10,13 +10,18 @@ import (
 )
 
 func (u *Usecase) SignUp(ctx context.Context, req SignUpRequest) (*SignUpResponse, error) {
-	emailAddressExists, err := u.repository.User.ExistsByEmailAddress(ctx, req.EmailAddress)
+	validationErr := u.validator.Struct(&req)
+	isEmailAddressExists, err := u.repository.User.ExistsByEmailAddress(ctx, req.EmailAddress)
 	if err != nil {
 		return nil, err
 	}
 
-	if emailAddressExists {
-		return nil, consts.ErrEmailAddressAlreadyRegistered
+	if isEmailAddressExists {
+		validationErr.AddError("emailAddress", consts.ErrEmailAddressAlreadyRegistered)
+	}
+
+	if validationErr.IsFail() {
+		return nil, validationErr
 	}
 
 	user := &entity.User{
@@ -59,6 +64,11 @@ func (u *Usecase) SignUp(ctx context.Context, req SignUpRequest) (*SignUpRespons
 }
 
 func (u *Usecase) SignIn(ctx context.Context, req SignInRequest) (*SignInResponse, error) {
+	validationErr := u.validator.Struct(&req)
+	if validationErr.IsFail() {
+		return nil, validationErr
+	}
+
 	user, err := u.repository.User.FindByEmailAddress(ctx, req.EmailAddress)
 	if err == consts.ErrRecordNotFound {
 		return nil, consts.ErrInvalidCredentials
@@ -87,14 +97,7 @@ func (u *Usecase) SignIn(ctx context.Context, req SignInRequest) (*SignInRespons
 }
 
 func (u *Usecase) SignOut(ctx context.Context, req SignOutRequest) error {
-	userSession, err := u.repository.UserSession.FindByToken(ctx, req.Token)
-	if err == consts.ErrRecordNotFound {
-		return consts.ErrUnauthorized
-	} else if err != nil {
-		return err
-	}
-
-	err = u.repository.UserSession.DeleteById(ctx, userSession.Id.String())
+	err := u.repository.UserSession.DeleteByToken(ctx, req.Token)
 	if err != nil {
 		return err
 	}

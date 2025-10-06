@@ -3,9 +3,9 @@ package auth
 type SignUpRequest struct {
 	IpAddress    string `json:"-"`
 	UserAgent    string `json:"-"`
-	Name         string `json:"name"`
-	EmailAddress string `json:"emailAddress"`
-	Password     string `json:"password"`
+	Name         string `json:"name" validate:"required" field:"name" label:"Name"`
+	EmailAddress string `json:"emailAddress" validate:"required|email" field:"emailAddress" label:"Email address"`
+	Password     string `json:"password" validate:"required|minLen:8" field:"password" label:"Password"`
 }
 
 type SignUpResponse struct {
@@ -15,8 +15,8 @@ type SignUpResponse struct {
 type SignInRequest struct {
 	IpAddress    string `json:"-"`
 	UserAgent    string `json:"-"`
-	EmailAddress string `json:"emailAddress"`
-	Password     string `json:"password"`
+	EmailAddress string `json:"emailAddress" validate:"required|email" field:"emailAddress" label:"Email address"`
+	Password     string `json:"password" validate:"required|minLen:8" field:"password" label:"Password"`
 }
 
 type SignInResponse struct {

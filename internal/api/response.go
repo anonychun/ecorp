@@ -46,6 +46,9 @@ func (r *Response) SetErrors(err error) *Response {
 		} else {
 			r.body.Errors = e.Errors
 		}
+	case ValidationError:
+		r.SetStatus(http.StatusUnprocessableEntity)
+		r.body.Errors = echo.Map{"params": e}
 	case *echo.HTTPError:
 		r.SetStatus(e.Code)
 		r.body.Errors = echo.Map{"message": e.Message}

@@ -9,6 +9,11 @@ import (
 )
 
 func (u *Usecase) SignIn(ctx context.Context, req SignInRequest) (*SignInResponse, error) {
+	validationErr := u.validator.Struct(&req)
+	if validationErr.IsFail() {
+		return nil, validationErr
+	}
+
 	admin, err := u.repository.Admin.FindByEmailAddress(ctx, req.EmailAddress)
 	if err == consts.ErrRecordNotFound {
 		return nil, consts.ErrInvalidCredentials
@@ -37,14 +42,7 @@ func (u *Usecase) SignIn(ctx context.Context, req SignInRequest) (*SignInRespons
 }
 
 func (u *Usecase) SignOut(ctx context.Context, req SignOutRequest) error {
-	adminSession, err := u.repository.AdminSession.FindByToken(ctx, req.Token)
-	if err == consts.ErrRecordNotFound {
-		return consts.ErrUnauthorized
-	} else if err != nil {
-		return err
-	}
-
-	err = u.repository.AdminSession.DeleteById(ctx, adminSession.Id.String())
+	err := u.repository.AdminSession.DeleteByToken(ctx, req.Token)
 	if err != nil {
 		return err
 	}

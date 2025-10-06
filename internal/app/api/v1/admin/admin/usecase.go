@@ -33,12 +33,26 @@ func (u *Usecase) FindById(ctx context.Context, req FindByIdRequest) (*AdminBlue
 }
 
 func (u *Usecase) Create(ctx context.Context, req CreateRequest) (*AdminBlueprint, error) {
+	validationErr := u.validator.Struct(&req)
+	isEmailAddressExists, err := u.repository.Admin.ExistsByEmailAddress(ctx, req.EmailAddress)
+	if err != nil {
+		return nil, err
+	}
+
+	if isEmailAddressExists {
+		validationErr.AddError("emailAddress", consts.ErrEmailAddressAlreadyRegistered)
+	}
+
+	if validationErr.IsFail() {
+		return nil, validationErr
+	}
+
 	admin := &entity.Admin{
 		Name:         req.Name,
 		EmailAddress: req.EmailAddress,
 	}
 
-	err := admin.HashPassword(req.Password)
+	err = admin.HashPassword(req.Password)
 	if err != nil {
 		return nil, err
 	}
@@ -52,13 +66,18 @@ func (u *Usecase) Create(ctx context.Context, req CreateRequest) (*AdminBlueprin
 }
 
 func (u *Usecase) Update(ctx context.Context, req UpdateRequest) (*AdminBlueprint, error) {
+	validationErr := u.validator.Struct(&req)
 	isEmailAddressExists, err := u.repository.Admin.ExistsByEmailAddressAndNotId(ctx, req.EmailAddress, req.Id)
 	if err != nil {
 		return nil, err
 	}
 
 	if isEmailAddressExists {
-		return nil, consts.ErrEmailAddressAlreadyRegistered
+		validationErr.AddError("emailAddress", consts.ErrEmailAddressAlreadyRegistered)
+	}
+
+	if validationErr.IsFail() {
+		return nil, validationErr
 	}
 
 	admin, err := u.repository.Admin.FindById(ctx, req.Id)

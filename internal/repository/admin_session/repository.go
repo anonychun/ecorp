@@ -20,6 +20,6 @@ func (r *Repository) Create(ctx context.Context, adminSession *entity.AdminSessi
 	return r.sql.DB(ctx).Create(adminSession).Error
 }
 
-func (r *Repository) DeleteById(ctx context.Context, id string) error {
-	return r.sql.DB(ctx).Delete(&entity.AdminSession{}, "id = ?", id).Error
+func (r *Repository) DeleteByToken(ctx context.Context, token string) error {
+	return r.sql.DB(ctx).Delete(&entity.AdminSession{}, "token = ?", token).Error
 }
