@@ -3,7 +3,7 @@ package user_session
 import (
 	"context"
 
-	"github.com/anonychun/ecorp/internal/entity"
+	"github.com/anonychun/benih/internal/entity"
 )
 
 func (r *Repository) FindByToken(ctx context.Context, token string) (*entity.UserSession, error) {

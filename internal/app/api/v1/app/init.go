@@ -1,8 +1,8 @@
 package app
 
 import (
-	"github.com/anonychun/ecorp/internal/app/api/v1/app/auth"
-	"github.com/anonychun/ecorp/internal/bootstrap"
+	"github.com/anonychun/benih/internal/app/api/v1/app/auth"
+	"github.com/anonychun/benih/internal/bootstrap"
 	"github.com/samber/do/v2"
 )
 

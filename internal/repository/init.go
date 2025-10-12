@@ -3,13 +3,13 @@ package repository
 import (
 	"context"
 
-	"github.com/anonychun/ecorp/internal/bootstrap"
-	"github.com/anonychun/ecorp/internal/current"
-	"github.com/anonychun/ecorp/internal/db"
-	"github.com/anonychun/ecorp/internal/repository/admin"
-	"github.com/anonychun/ecorp/internal/repository/admin_session"
-	"github.com/anonychun/ecorp/internal/repository/user"
-	"github.com/anonychun/ecorp/internal/repository/user_session"
+	"github.com/anonychun/benih/internal/bootstrap"
+	"github.com/anonychun/benih/internal/current"
+	"github.com/anonychun/benih/internal/db"
+	"github.com/anonychun/benih/internal/repository/admin"
+	"github.com/anonychun/benih/internal/repository/admin_session"
+	"github.com/anonychun/benih/internal/repository/user"
+	"github.com/anonychun/benih/internal/repository/user_session"
 	"github.com/samber/do/v2"
 	"gorm.io/gorm"
 )

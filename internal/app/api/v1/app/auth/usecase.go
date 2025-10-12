@@ -3,10 +3,10 @@ package auth
 import (
 	"context"
 
-	"github.com/anonychun/ecorp/internal/consts"
-	"github.com/anonychun/ecorp/internal/current"
-	"github.com/anonychun/ecorp/internal/entity"
-	"github.com/anonychun/ecorp/internal/repository"
+	"github.com/anonychun/benih/internal/consts"
+	"github.com/anonychun/benih/internal/current"
+	"github.com/anonychun/benih/internal/entity"
+	"github.com/anonychun/benih/internal/repository"
 )
 
 func (u *Usecase) SignUp(ctx context.Context, req SignUpRequest) (*SignUpResponse, error) {

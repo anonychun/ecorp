@@ -1,6 +1,6 @@
 package admin
 
-import "github.com/anonychun/ecorp/internal/entity"
+import "github.com/anonychun/benih/internal/entity"
 
 type AdminBlueprint struct {
 	Id   string `json:"id"`

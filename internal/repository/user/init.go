@@ -1,8 +1,8 @@
 package user
 
 import (
-	"github.com/anonychun/ecorp/internal/bootstrap"
-	"github.com/anonychun/ecorp/internal/db"
+	"github.com/anonychun/benih/internal/bootstrap"
+	"github.com/anonychun/benih/internal/db"
 	"github.com/samber/do/v2"
 )
 

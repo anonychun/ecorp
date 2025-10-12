@@ -3,7 +3,7 @@ package user
 import (
 	"context"
 
-	"github.com/anonychun/ecorp/internal/entity"
+	"github.com/anonychun/benih/internal/entity"
 )
 
 func (r *Repository) FindById(ctx context.Context, id string) (*entity.User, error) {

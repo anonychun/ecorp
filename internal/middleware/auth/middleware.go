@@ -3,8 +3,8 @@ package auth
 import (
 	"slices"
 
-	"github.com/anonychun/ecorp/internal/consts"
-	"github.com/anonychun/ecorp/internal/current"
+	"github.com/anonychun/benih/internal/consts"
+	"github.com/anonychun/benih/internal/current"
 	"github.com/labstack/echo/v4"
 )
 

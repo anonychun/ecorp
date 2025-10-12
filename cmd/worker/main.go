@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/anonychun/ecorp/internal/worker"
+	"github.com/anonychun/benih/internal/worker"
 	"github.com/urfave/cli/v3"
 )
 

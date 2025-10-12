@@ -3,7 +3,7 @@ package config
 import (
 	"time"
 
-	"github.com/anonychun/ecorp/internal/bootstrap"
+	"github.com/anonychun/benih/internal/bootstrap"
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/kelseyhightower/envconfig"
 	"github.com/samber/do/v2"

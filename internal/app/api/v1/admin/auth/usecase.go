@@ -3,9 +3,9 @@ package auth
 import (
 	"context"
 
-	"github.com/anonychun/ecorp/internal/consts"
-	"github.com/anonychun/ecorp/internal/current"
-	"github.com/anonychun/ecorp/internal/entity"
+	"github.com/anonychun/benih/internal/consts"
+	"github.com/anonychun/benih/internal/current"
+	"github.com/anonychun/benih/internal/entity"
 )
 
 func (u *Usecase) SignIn(ctx context.Context, req SignInRequest) (*SignInResponse, error) {

@@ -3,8 +3,8 @@ package db
 import (
 	"context"
 
-	"github.com/anonychun/ecorp/internal/bootstrap"
-	"github.com/anonychun/ecorp/migrations"
+	"github.com/anonychun/benih/internal/bootstrap"
+	"github.com/anonychun/benih/migrations"
 	"github.com/pressly/goose/v3"
 	"github.com/samber/do/v2"
 )

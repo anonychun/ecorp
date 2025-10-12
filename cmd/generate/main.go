@@ -6,7 +6,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/anonychun/ecorp/cmd/generate/internal"
+	"github.com/anonychun/benih/cmd/generate/internal"
 	"github.com/urfave/cli/v3"
 )
 

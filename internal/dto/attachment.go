@@ -3,8 +3,8 @@ package dto
 import (
 	"context"
 
-	"github.com/anonychun/ecorp/internal/entity"
-	"github.com/anonychun/ecorp/internal/storage"
+	"github.com/anonychun/benih/internal/entity"
+	"github.com/anonychun/benih/internal/storage"
 )
 
 type AttachmentBlueprint struct {

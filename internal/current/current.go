@@ -3,7 +3,7 @@ package current
 import (
 	"context"
 
-	"github.com/anonychun/ecorp/internal/entity"
+	"github.com/anonychun/benih/internal/entity"
 	"gorm.io/gorm"
 )
 

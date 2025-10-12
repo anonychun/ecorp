@@ -1,10 +1,10 @@
 package server
 
 import (
-	"github.com/anonychun/ecorp/internal/api"
-	"github.com/anonychun/ecorp/internal/app"
-	"github.com/anonychun/ecorp/internal/bootstrap"
-	"github.com/anonychun/ecorp/internal/middleware"
+	"github.com/anonychun/benih/internal/api"
+	"github.com/anonychun/benih/internal/app"
+	"github.com/anonychun/benih/internal/bootstrap"
+	"github.com/anonychun/benih/internal/middleware"
 	"github.com/labstack/echo/v4"
 	echomiddleware "github.com/labstack/echo/v4/middleware"
 	"github.com/samber/do/v2"
