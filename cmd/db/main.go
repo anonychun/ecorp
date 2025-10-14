@@ -5,8 +5,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/anonychun/benih/internal/bootstrap"
-	"github.com/anonychun/benih/internal/db"
+	"github.com/anonychun/bibit/internal/bootstrap"
+	"github.com/anonychun/bibit/internal/db"
 	"github.com/samber/do/v2"
 	"github.com/urfave/cli/v3"
 )

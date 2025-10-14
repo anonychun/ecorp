@@ -9,8 +9,8 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/anonychun/benih/internal/bootstrap"
-	"github.com/anonychun/benih/internal/config"
+	"github.com/anonychun/bibit/internal/bootstrap"
+	"github.com/anonychun/bibit/internal/config"
 	"github.com/labstack/echo/v4"
 	"github.com/samber/do/v2"
 )

@@ -3,8 +3,8 @@ package db
 import (
 	"context"
 
-	"github.com/anonychun/benih/internal/bootstrap"
-	"github.com/anonychun/benih/internal/entity"
+	"github.com/anonychun/bibit/internal/bootstrap"
+	"github.com/anonychun/bibit/internal/entity"
 	"github.com/samber/do/v2"
 	"gorm.io/gorm"
 )

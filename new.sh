@@ -6,10 +6,10 @@ if [ $# -eq 0 ]; then
 	echo -e "\033[31m❌ Project name required!\033[0m"
 	echo ""
 	echo -e "\033[1mUsage:\033[0m"
-	echo -e "  \033[36mwget -qO- \033[34mhttps://raw.githubusercontent.com/anonychun/benih/refs/heads/main/new.sh \033[33m| \033[36mbash -s \033[32m<project-name>\033[0m"
+	echo -e "  \033[36mwget -qO- \033[34mhttps://raw.githubusercontent.com/anonychun/bibit/refs/heads/main/new.sh \033[33m| \033[36mbash -s \033[32m<project-name>\033[0m"
 	echo ""
 	echo -e "\033[1mExample:\033[0m"
-	echo -e "  \033[36mwget -qO- \033[34mhttps://raw.githubusercontent.com/anonychun/benih/refs/heads/main/new.sh \033[33m| \033[36mbash -s \033[32mgithub.com/anonychun/verification-api\033[0m"
+	echo -e "  \033[36mwget -qO- \033[34mhttps://raw.githubusercontent.com/anonychun/bibit/refs/heads/main/new.sh \033[33m| \033[36mbash -s \033[32mgithub.com/anonychun/verification-api\033[0m"
 	exit 1
 fi
 
@@ -20,11 +20,11 @@ TMP_DIR=$(mktemp -d)
 DIR_NAME=$(basename "$PROJECT")
 
 # Clone to tmp
-git clone --depth 1 https://github.com/anonychun/benih.git "$TMP_DIR"
+git clone --depth 1 https://github.com/anonychun/bibit.git "$TMP_DIR"
 
 # Replace project name
 cd "$TMP_DIR"
-grep -rl "github.com/anonychun/benih" . | xargs sed -i "s|github.com/anonychun/benih|$PROJECT|g"
+grep -rl "github.com/anonychun/bibit" . | xargs sed -i "s|github.com/anonychun/bibit|$PROJECT|g"
 
 # Copy .env.sample to .env
 cp .env.sample .env

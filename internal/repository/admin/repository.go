@@ -3,7 +3,7 @@ package admin
 import (
 	"context"
 
-	"github.com/anonychun/benih/internal/entity"
+	"github.com/anonychun/bibit/internal/entity"
 )
 
 func (r *Repository) FindAll(ctx context.Context) ([]*entity.Admin, error) {

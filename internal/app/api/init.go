@@ -1,8 +1,8 @@
 package api
 
 import (
-	v1 "github.com/anonychun/benih/internal/app/api/v1"
-	"github.com/anonychun/benih/internal/bootstrap"
+	v1 "github.com/anonychun/bibit/internal/app/api/v1"
+	"github.com/anonychun/bibit/internal/bootstrap"
 	"github.com/samber/do/v2"
 )
 

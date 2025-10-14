@@ -1,9 +1,9 @@
 package auth
 
 import (
-	"github.com/anonychun/benih/internal/bootstrap"
-	"github.com/anonychun/benih/internal/repository"
-	"github.com/anonychun/benih/internal/validator"
+	"github.com/anonychun/bibit/internal/bootstrap"
+	"github.com/anonychun/bibit/internal/repository"
+	"github.com/anonychun/bibit/internal/validator"
 	"github.com/samber/do/v2"
 )
 

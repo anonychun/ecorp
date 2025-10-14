@@ -3,8 +3,8 @@ package admin
 import (
 	"context"
 
-	"github.com/anonychun/benih/internal/consts"
-	"github.com/anonychun/benih/internal/entity"
+	"github.com/anonychun/bibit/internal/consts"
+	"github.com/anonychun/bibit/internal/entity"
 	"github.com/samber/lo"
 )
 

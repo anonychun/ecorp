@@ -3,8 +3,8 @@ package auth
 import (
 	"net/http"
 
-	"github.com/anonychun/benih/internal/api"
-	"github.com/anonychun/benih/internal/consts"
+	"github.com/anonychun/bibit/internal/api"
+	"github.com/anonychun/bibit/internal/consts"
 	"github.com/labstack/echo/v4"
 )
 

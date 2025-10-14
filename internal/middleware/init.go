@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"github.com/anonychun/benih/internal/bootstrap"
-	"github.com/anonychun/benih/internal/middleware/auth"
+	"github.com/anonychun/bibit/internal/bootstrap"
+	"github.com/anonychun/bibit/internal/middleware/auth"
 	"github.com/samber/do/v2"
 )
 

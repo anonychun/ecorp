@@ -6,9 +6,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/anonychun/benih/internal/bootstrap"
-	"github.com/anonychun/benih/internal/config"
-	"github.com/anonychun/benih/internal/current"
+	"github.com/anonychun/bibit/internal/bootstrap"
+	"github.com/anonychun/bibit/internal/config"
+	"github.com/anonychun/bibit/internal/current"
 	"github.com/samber/do/v2"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"

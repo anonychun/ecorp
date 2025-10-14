@@ -3,7 +3,7 @@ package admin
 import (
 	"net/http"
 
-	"github.com/anonychun/benih/internal/api"
+	"github.com/anonychun/bibit/internal/api"
 	"github.com/labstack/echo/v4"
 )
 

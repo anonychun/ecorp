@@ -1,6 +1,6 @@
-# Benih
+# Bibit
 
-Benih is a tool to bootstrap new projects with a predefined structure and configuration. It helps developers quickly set up a new project with some opinionated defaults in mind.
+Bibit is a tool to bootstrap new projects with a predefined structure and configuration. It helps developers quickly set up a new project with some opinionated defaults in mind.
 
 The goal is after you run the initialization script, you will have a fully functional project structure with all the necessary files and folders in place, so you can start developing your application and focusing on business logic right away without worrying about setting up the basic structure.
 
@@ -9,7 +9,7 @@ The goal is after you run the initialization script, you will have a fully funct
 You can initialize a new project by running the following command in your terminal:
 
 ```bash
-wget -qO- https://raw.githubusercontent.com/anonychun/benih/refs/heads/main/new.sh | bash -s <project-name>
+wget -qO- https://raw.githubusercontent.com/anonychun/bibit/refs/heads/main/new.sh | bash -s <project-name>
 ```
 
 Replace `<project-name>` with the desired name for your new project. This command will create a new directory with the specified project name and set up the necessary files and folders.
@@ -204,7 +204,7 @@ user := current.User(ctx)
 
 ## Starter kit
 
-Benih comes with default starter kit to help you get started quickly.
+Bibit comes with default starter kit to help you get started quickly.
 
 - **Admin management**: Includes admin authentication and CRUD operations.
 

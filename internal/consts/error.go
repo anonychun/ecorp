@@ -3,7 +3,7 @@ package consts
 import (
 	"net/http"
 
-	"github.com/anonychun/benih/internal/api"
+	"github.com/anonychun/bibit/internal/api"
 	"gorm.io/gorm"
 )
 

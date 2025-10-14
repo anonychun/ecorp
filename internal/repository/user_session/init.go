@@ -1,8 +1,8 @@
 package user_session
 
 import (
-	"github.com/anonychun/benih/internal/bootstrap"
-	"github.com/anonychun/benih/internal/db"
+	"github.com/anonychun/bibit/internal/bootstrap"
+	"github.com/anonychun/bibit/internal/db"
 	"github.com/samber/do/v2"
 )
 

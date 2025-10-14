@@ -1,9 +1,9 @@
 package admin
 
 import (
-	"github.com/anonychun/benih/internal/app/api/v1/admin/admin"
-	"github.com/anonychun/benih/internal/app/api/v1/admin/auth"
-	"github.com/anonychun/benih/internal/bootstrap"
+	"github.com/anonychun/bibit/internal/app/api/v1/admin/admin"
+	"github.com/anonychun/bibit/internal/app/api/v1/admin/auth"
+	"github.com/anonychun/bibit/internal/bootstrap"
 	"github.com/samber/do/v2"
 )
 

@@ -1,4 +1,4 @@
-module github.com/anonychun/benih
+module github.com/anonychun/bibit
 
 go 1.25
 

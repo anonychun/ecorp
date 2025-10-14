@@ -1,8 +1,8 @@
 package validator
 
 import (
-	"github.com/anonychun/benih/internal/api"
-	"github.com/anonychun/benih/internal/bootstrap"
+	"github.com/anonychun/bibit/internal/api"
+	"github.com/anonychun/bibit/internal/bootstrap"
 	"github.com/gookit/validate"
 	"github.com/samber/do/v2"
 )
