@@ -4,10 +4,8 @@ import (
 	"mime/multipart"
 	"os"
 	"path/filepath"
-	"time"
 
 	"github.com/oklog/ulid/v2"
-	"gorm.io/gorm"
 )
 
 type Attachment struct {
@@ -16,11 +14,6 @@ type Attachment struct {
 	ObjectName string
 	FileName   string
 	ByteSize   int64
-}
-
-func (a *Attachment) BeforeUpdate(tx *gorm.DB) error {
-	a.UpdatedAt = time.Now()
-	return nil
 }
 
 func NewAttachmentFromFile(file *os.File) (*Attachment, error) {
