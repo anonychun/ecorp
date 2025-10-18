@@ -13,7 +13,6 @@ require (
 	github.com/oklog/ulid/v2 v2.1.1
 	github.com/pressly/goose/v3 v3.26.0
 	github.com/samber/do/v2 v2.0.0
-	github.com/samber/lo v1.52.0
 	github.com/urfave/cli/v3 v3.4.1
 	golang.org/x/crypto v0.43.0
 	gorm.io/driver/postgres v1.6.0

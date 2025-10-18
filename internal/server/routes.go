@@ -31,11 +31,6 @@ func routes(e *echo.Echo) error {
 			e.POST("/auth/signin", h.Api.V1.Admin.Auth.SignIn)
 			e.POST("/auth/signout", h.Api.V1.Admin.Auth.SignOut)
 			e.GET("/auth/me", h.Api.V1.Admin.Auth.Me)
-
-			e.GET("/admin", h.Api.V1.Admin.Admin.FindAll)
-			e.GET("/admin/:id", h.Api.V1.Admin.Admin.FindById)
-			e.POST("/admin", h.Api.V1.Admin.Admin.Create)
-			e.PUT("/admin/:id", h.Api.V1.Admin.Admin.Update)
 		})
 
 		namespace(e, "/app", func(e *echo.Group) {

@@ -1,7 +1,6 @@
 package admin
 
 import (
-	"github.com/anonychun/bibit/internal/app/api/v1/admin/admin"
 	"github.com/anonychun/bibit/internal/app/api/v1/admin/auth"
 	"github.com/anonychun/bibit/internal/bootstrap"
 	"github.com/samber/do/v2"
@@ -13,25 +12,21 @@ func init() {
 }
 
 type Usecase struct {
-	Admin *admin.Usecase
-	Auth  *auth.Usecase
+	Auth *auth.Usecase
 }
 
 func NewUsecase(i do.Injector) (*Usecase, error) {
 	return &Usecase{
-		Admin: do.MustInvoke[*admin.Usecase](i),
-		Auth:  do.MustInvoke[*auth.Usecase](i),
+		Auth: do.MustInvoke[*auth.Usecase](i),
 	}, nil
 }
 
 type Handler struct {
-	Auth  *auth.Handler
-	Admin *admin.Handler
+	Auth *auth.Handler
 }
 
 func NewHandler(i do.Injector) (*Handler, error) {
 	return &Handler{
-		Admin: do.MustInvoke[*admin.Handler](i),
-		Auth:  do.MustInvoke[*auth.Handler](i),
+		Auth: do.MustInvoke[*auth.Handler](i),
 	}, nil
 }
