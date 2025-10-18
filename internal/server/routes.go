@@ -5,6 +5,7 @@ import (
 	"github.com/anonychun/bibit/internal/app"
 	"github.com/anonychun/bibit/internal/bootstrap"
 	"github.com/anonychun/bibit/internal/middleware"
+	"github.com/anonychun/bibit/public"
 	"github.com/labstack/echo/v4"
 	echomiddleware "github.com/labstack/echo/v4/middleware"
 	"github.com/samber/do/v2"
@@ -48,6 +49,11 @@ func routes(e *echo.Echo) error {
 
 		namespace(e, "/landing", func(e *echo.Group) {
 		})
+	})
+
+	e.StaticFS("/", public.PublicFs)
+	e.GET("/up", func(c echo.Context) error {
+		return nil
 	})
 
 	return nil
